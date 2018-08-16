@@ -28,9 +28,9 @@ Syntax converted:
     quote            >                  '''
                      texts...           texts...
                                         '''
-    code             ```                ```
+    code             ```                {{{code: lang="python" linenumbers="True"'''
                      texts...           texts...
-                     ```                ```
+                     ```                }}}
     ----------------------------------------------------
     inline link      [link](url)        [[url|link]]
     ----------------------------------------------------
@@ -842,7 +842,11 @@ class Markdown2Zim(object):
             codeblock = codeblock.lstrip('\n')  # trim leading newlines
             codeblock = codeblock.rstrip()      # trim trailing whitespace
 
-        return "\n\n```%s\n```\n\n" % codeblock
+        pre = '''{{{code: lang="python" linenumbers="True"'''
+        post = '''}}}'''
+        return "\n\n{}\n{}\n{}\n\n".format(pre, codeblock, post)
+
+        # return "\n\n```%s\n```\n\n" % codeblock
 
 
 
